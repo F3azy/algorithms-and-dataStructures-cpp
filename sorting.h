@@ -255,11 +255,17 @@ void Sorting<T>::countingSort(T tab[], int size, std::string order) {
     T* temp = new T[size];
     for (int i = 0; i < size; i++)  temp[i] = tab[i];
     
-    for(int i = size - 1; i >= 0; i--) {
-        tab[count[temp[i]] - 1] = temp[i];
-        count[temp[i]]--;
+    for(int i = 0; i < size; i++) {
+        temp[count[tab[i]] - 1] = tab[i];
+        count[tab[i]]--;
     }
 
+    if(order == "ASC") {
+        for (int i = 0; i < size; i++)  tab[i] = temp[i];
+    }
+    else if(order == "DESC") {
+        for (int i = size - 1; i >= 0; i--)  tab[size - 1 - i] = temp[i];
+    }
 }
 
 #endif
