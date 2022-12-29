@@ -2,6 +2,7 @@
 #define SORTING_H__
 
 #include <iostream>
+#include <type_traits>
 
 template <class T>
 class Sorting {
@@ -67,7 +68,11 @@ void Sorting<T>::sort(T tab[], int size, std::string sort /*= "default"*/, std::
             Sorting<T>::quickSort(tab, 0, size-1, order);
             break;
         case 6:
-            Sorting<T>::countingSort(tab, size, order);
+            if(typeid(tab) != typeid(int*)) {
+                std::cout << std::endl << "Array type must be of type int for counting sort\n";
+                return;
+            }
+            else {Sorting<T>::countingSort(tab, size, order);}
             break;
         
         default:
@@ -239,25 +244,30 @@ void Sorting<T>::quickSort(T tab[], int l, int r, std::string order) {
 
 template <class T>
 void Sorting<T>::countingSort(T tab[], int size, std::string order) {
-    T max = tab[0];
 
-    for (int i = 1; i < size; i++)
-        if(max < tab[i]) 
-            max = tab[i];
+    int max = tab[0];
+    int min = tab[0];
 
-    int* count = new int[max+1];
+    for (int i = 1; i < size; i++) {
+        if(max < tab[i]) max = tab[i];
+        if(min > tab[i]) min = tab[i];
+    }
 
-    for (int i = 0; i <= max; i++) count[i] = 0;
-    for (int i = 0; i < size; i++)  count[tab[i]]++;
+    int range = max - min + 1;
+
+    int* count = new int[range];
+
+    for (int i = 0; i < range; i++) count[i] = 0;
+    for (int i = 0; i < size; i++)  count[tab[i] - min]++;
     
-    for(int i = 1; i <= max ; i++) count[i]+=count[i-1];
+    for(int i = 1; i < range ; i++) count[i]+=count[i-1];
 
-    T* temp = new T[size];
+    int* temp = new int[size];
     for (int i = 0; i < size; i++)  temp[i] = tab[i];
     
-    for(int i = 0; i < size; i++) {
-        temp[count[tab[i]] - 1] = tab[i];
-        count[tab[i]]--;
+    for(int i = size - 1; i >= 0; i--) {
+        temp[count[tab[i] - min] - 1] = tab[i];
+        count[tab[i] - min]--;
     }
 
     if(order == "ASC") {
