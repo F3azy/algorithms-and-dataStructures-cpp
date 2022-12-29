@@ -72,7 +72,7 @@ void Sorting<T>::sort(T tab[], int size, std::string sort /*= "default"*/, std::
                 std::cout << std::endl << "Array type must be of type int for counting sort\n";
                 return;
             }
-            else {Sorting<T>::countingSort(tab, size, order);}
+            else Sorting<T>::countingSort(tab, size, order);
             break;
         
         default:
@@ -192,7 +192,6 @@ void Sorting<T>::merge(T tab[], int p, int q, int r, std::string order) {
         j++;
         k++;
     }
-
 }
 
 template <class T>
@@ -244,7 +243,6 @@ void Sorting<T>::quickSort(T tab[], int l, int r, std::string order) {
 
 template <class T>
 void Sorting<T>::countingSort(T tab[], int size, std::string order) {
-
     int max = tab[0];
     int min = tab[0];
 
