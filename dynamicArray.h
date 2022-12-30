@@ -2,6 +2,8 @@
 #define DYNAMICARRAY_H
 
 #include <iostream>
+#include "searching.h"
+#include "sorting.h"
 
 template <class  T>
 class dynamicArray {
@@ -22,6 +24,10 @@ class dynamicArray {
         void pop();
         bool empty();
         void clear();
+        int indexOf(int);
+        int* allIndexOf(int);
+        int allIndexOfCount(int);
+        void sort(std::string);
         T& operator[](int);
         template<typename U>
         friend std::ostream& operator<<(std::ostream&, const dynamicArray<U>&);
@@ -131,6 +137,26 @@ void dynamicArray<T>::clear()
         arrayOccupied = 0;
         array = new T[arraySize];
     }
+}
+
+template <class T>
+int dynamicArray<T>::indexOf(int value) {
+    return Searching<T>::search(array, arrayOccupied, value);
+}
+
+template <class T>
+int* dynamicArray<T>::allIndexOf(int value) {
+    return Searching<T>::searchAll(array, arrayOccupied, value);
+}
+
+template <class T>
+int dynamicArray<T>::allIndexOfCount(int value) {
+    return Searching<T>::searchCount(array, arrayOccupied, value);
+}
+
+template <class T>
+void dynamicArray<T>::sort(std::string) {
+    Sorting<T>::sort(array, arrayOccupied, "MERGE");
 }
 
 template <class T>
