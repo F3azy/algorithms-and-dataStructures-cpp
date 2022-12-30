@@ -15,12 +15,13 @@ class dynamicArray {
         dynamicArray();
         dynamicArray(int);
         ~dynamicArray();
+        T* getArray();
         int getSize();
         int getOccupied();
         void push(T);
         void pop();
         bool empty();
-        void clearAll();
+        void clear();
         T& operator[](int);
         template<typename U>
         friend std::ostream& operator<<(std::ostream&, const dynamicArray<U>&);
@@ -54,6 +55,12 @@ template <class T>
 dynamicArray<T>::~dynamicArray()
 {
     delete[] this->array;
+}
+
+template <class T>
+T* dynamicArray<T>::getArray()
+{
+    return array;
 }
 
 template <class T>
@@ -115,7 +122,7 @@ bool dynamicArray<T>::empty()
 }
 
 template <class T>
-void dynamicArray<T>::clearAll()
+void dynamicArray<T>::clear()
 {
     if(arraySize != 0)
     {

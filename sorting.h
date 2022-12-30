@@ -9,18 +9,18 @@ class Sorting {
     private:
         Sorting();
 
-        static void swap(T& a, T& b);
-        static void bubbleSort(T tab[], int size, std::string order);
-        static void selectionSort(T tab[], int size, std::string order);
-        static void insertionSort(T tab[], int size, std::string order);
-        static void merge(T tab[], int p, int q, int r, std::string order);
-        static void mergeSort(T tab[], int l, int r, std::string order);
-        static int partition(T tab[], int l, int r, std::string order);
-        static void quickSort(T tab[], int l, int r, std::string order);
-        static void countingSort(T tab[], int size, std::string order);
+        static void swap(T&, T&);
+        static void bubbleSort(T[], int, std::string);
+        static void selectionSort(T[], int, std::string);
+        static void insertionSort(T[], int, std::string);
+        static void merge(T[], int, int, int, std::string);
+        static void mergeSort(T[], int, int, std::string);
+        static int partition(T[], int, int, std::string);
+        static void quickSort(T[], int, int, std::string);
+        static void countingSort(T[], int, std::string);
 
     public: 
-        static void sort(T tab[], int size, std::string sort = "default", std::string order = "ASC");
+        static void sort(T[], int, std::string = "default", std::string = "ASC");
 
 };
 
