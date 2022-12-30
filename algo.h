@@ -1,5 +1,5 @@
-#ifndef SORTING_H__
-#define SORTING_H__
+#ifndef ALGO_H__
+#define ALGO_H__
 
 #include "searching.h"
 #include "sorting.h"
