@@ -1,5 +1,6 @@
 #include <iostream>
 #include "sorting.h"
+#include "searching.h"
 
 int main()
 {
@@ -9,15 +10,17 @@ int main()
 
     int size = sizeof(tab) / sizeof(tab[0]);
     
-    for(int i=0;i<size;i++)  std::cout << tab[i] << " ";
+    std::cout << Searching<int>::search(tab, size, 33);
 
-    std::cout << std::endl;
+    // for(int i=0;i<size;i++)  std::cout << tab[i] << " ";
 
-    Sorting<int>::sort(tab, size, "COUNT", "DESC");
+    // std::cout << std::endl;
 
-    std::cout << std::endl;
+    // Sorting<int>::sort(tab, size, "COUNT", "DESC");
 
-    for(int i=0;i<size;i++)  std::cout << tab[i] << " ";
+    // std::cout << std::endl;
+
+    // for(int i=0;i<size;i++)  std::cout << tab[i] << " ";
 
     return 0;
 }
