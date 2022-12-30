@@ -20,7 +20,7 @@ class Sorting {
         static void countingSort(T[], int, std::string);
 
     public: 
-        static void sort(T[], int, std::string = "default", std::string = "ASC");
+        static void sort(T[], int, std::string = "INSERTION", std::string = "ASC");
 
 };
 
@@ -29,7 +29,7 @@ class Sorting {
  *
  * @param tab an array,
  * @param size size of the array,
- * @param sort choose sorting alorithm {"BUBBLE" - bubble sort,  "SELECTION" - selection sort, "INSERTION" - insertion sort, "MERGE" - merge sort, "QUICK" - quick sort, "COUNT" -  counting sort}
+ * @param sort choose sorting alorithm {default "INSERTION" - insertion sort, "BUBBLE" - bubble sort,  "SELECTION" - selection sort, "MERGE" - merge sort, "QUICK" - quick sort, "COUNT" -  counting sort}
  * @param order choose sorting order {default "ASC" - ascending order, "DESC" - descending order}
  */
 template <class T>
@@ -44,10 +44,9 @@ void Sorting<T>::sort(T tab[], int size, std::string sort /*= "default"*/, std::
 
     if(sort == "BUBBLE") sortCase = 1;
     else if(sort == "SELECTION") sortCase = 2;
-    else if(sort == "INSERTION") sortCase = 3;
-    else if(sort == "MERGE") sortCase = 4;
-    else if(sort == "QUICK") sortCase = 5;
-        else if(sort == "COUNT") sortCase = 6;
+    else if(sort == "MERGE") sortCase = 3;
+    else if(sort == "QUICK") sortCase = 4;
+    else if(sort == "COUNT") sortCase = 5;
 
 
     switch (sortCase)
@@ -59,15 +58,12 @@ void Sorting<T>::sort(T tab[], int size, std::string sort /*= "default"*/, std::
             Sorting<T>::selectionSort(tab, size, order);
             break;
         case 3:
-            Sorting<T>::insertionSort(tab, size, order);
-            break;
-        case 4:
             Sorting<T>::mergeSort(tab, 0, size-1, order);
             break;
-        case 5:
+        case 4:
             Sorting<T>::quickSort(tab, 0, size-1, order);
             break;
-        case 6:
+        case 5:
             if(typeid(tab) != typeid(int*)) {
                 std::cout << std::endl << "Array type must be of type int for counting sort\n";
                 return;
@@ -76,6 +72,7 @@ void Sorting<T>::sort(T tab[], int size, std::string sort /*= "default"*/, std::
             break;
         
         default:
+            Sorting<T>::insertionSort(tab, size, order);
             break;
     }
 }

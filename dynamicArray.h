@@ -27,7 +27,7 @@ class dynamicArray {
         int indexOf(int);
         int* allIndexOf(int);
         int allIndexOfCount(int);
-        void sort(std::string);
+        void sort(std::string = "ASC");
         T& operator[](int);
         template<typename U>
         friend std::ostream& operator<<(std::ostream&, const dynamicArray<U>&);
@@ -155,8 +155,8 @@ int dynamicArray<T>::allIndexOfCount(int value) {
 }
 
 template <class T>
-void dynamicArray<T>::sort(std::string) {
-    Sorting<T>::sort(array, arrayOccupied, "MERGE");
+void dynamicArray<T>::sort(std::string order) {
+    Sorting<T>::sort(array, arrayOccupied, "MERGE", order);
 }
 
 template <class T>
