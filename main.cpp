@@ -10,21 +10,23 @@ int main()
 
     int size = sizeof(tab) / sizeof(tab[0]);
 
-    int* idx = Searching<int>::searchAll(tab, size, 6);
+    // int* idx = Searching<int>::searchAll(tab, size, 6);
 
-    int size2 = Searching<int>::searchCount(tab, size, 6);
+    // int size2 = Searching<int>::searchCount(tab, size, 6);
     
-    for(int i=0;i<size2;i++)  std::cout << idx[i] << " ";
+    // for(int i=0;i<size2;i++)  std::cout << idx[i] << " ";
 
     // for(int i=0;i<size;i++)  std::cout << tab[i] << " ";
 
     // std::cout << std::endl;
 
-    // Sorting<int>::sort(tab, size, "SELECTION");
+    Sorting<int>::sort(tab, size, "SELECTION");
 
-    // std::cout << std::endl;
+    std::cout << Searching<int>::search(tab, size, 33, "BIN");
 
-    // for(int i=0;i<size;i++)  std::cout << tab[i] << " ";
+    std::cout << std::endl;
+
+    for(int i=0;i<size;i++)  std::cout << tab[i] << " ";
 
     return 0;
 }

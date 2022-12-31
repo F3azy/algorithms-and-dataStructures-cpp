@@ -10,7 +10,9 @@ class Searching {
         Searching();
 
         static int linearSearch(T[], int, int);
-        static int binarySearch(T[], int, int);
+        static int binarySearch(T[], int, int, int, std::string = "ITERATIVE");
+        static int binaryIterative(T[], int, int, int);
+        static int binaryRecursive(T[], int, int, int);
 
         static int* linearSearchAll(T[], int, int);
         static int* binarySearchAll(T[], int, int);
@@ -48,7 +50,7 @@ int Searching<T>::search(T tab[], int size, int value, std::string search /*= "L
     switch (searchCase)
     {
         case 1:
-            return Searching<T>::binarySearch(tab, size, value);
+            return Searching<T>::binarySearch(tab, 0, size - 1, value);
             break;
         
         default:
@@ -67,7 +69,51 @@ int Searching<T>::linearSearch(T tab[], int size, int value) {
 }
 
 template <class T>
-int Searching<T>::binarySearch(T tab[], int size, int value) {
+int Searching<T>::binarySearch(T tab[], int l, int r, int value, std::string  method /*= "LINEAR"*/) {
+
+    int methodCase = 0;
+
+    if(method == "RECURSIVE") methodCase = 1;
+
+    switch (methodCase)
+    {
+        case 1:
+            return Searching<T>::binaryRecursive(tab, l, r, value);
+            break;
+        
+        default:
+            return Searching<T>::binaryIterative(tab, l, r, value);
+            break;
+    }
+
+    return -1;
+}
+
+template <class T>
+int Searching<T>::binaryIterative(T tab[], int l, int r, int value) {
+    do
+    {
+        int mid = (l+r)/2; 
+
+        if(tab[mid] == value) return mid;
+        else if(tab[mid] > value) r = mid - 1;
+        else l = mid + 1;
+
+    } while (l <= r);
+
+    return -1;
+}
+
+template <class T>
+int Searching<T>::binaryRecursive(T tab[], int l, int r, int value) {
+    if(l<=r) {
+        int mid = (l+r)/2;
+
+        if(tab[mid] == value) return mid;
+        else if(tab[mid] > value) return Searching<T>::binaryRecursive(tab, l, mid - 1, value);
+        else return Searching<T>::binaryRecursive(tab, mid + 1, r, value);
+    }
+
     return -1;
 }
 
