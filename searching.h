@@ -2,7 +2,7 @@
 #define SEARCHING_H_
 
 #include <iostream>
-#include "dynamicArray.h"
+#include "DynamicArray.h"
 
 template <class T>
 class Searching {
@@ -151,7 +151,7 @@ int* Searching<T>::searchAll(T tab[], int size, int value, std::string search /*
 
 template <class T>
 int* Searching<T>::linearSearchAll(T tab[], int size, int value) {
-    dynamicArray<int> idx;
+    DynamicArray<int> idx;
 
     for (int i = 0; i < size; i++)
         if(tab[i] == value) 

@@ -1,6 +1,6 @@
 #include <iostream>
-#include "sorting.h"
-#include "searching.h"
+#include "algo.h"
+
 
 int main()
 {

@@ -1,12 +1,12 @@
 #ifndef DYNAMICARRAY_H__
-#define DYNAMICARRAY_H
+#define DYNAMICARRAY_H__
 
 #include <iostream>
-#include "searching.h"
-#include "sorting.h"
+#include "Searching.h"
+#include "Sorting.h"
 
 template <class  T>
-class dynamicArray {
+class DynamicArray {
     private:
         T* array;
         unsigned int arraySize;
@@ -14,9 +14,9 @@ class dynamicArray {
 
         void increaseArraySize();
     public:
-        dynamicArray();
-        dynamicArray(int);
-        ~dynamicArray();
+        DynamicArray();
+        DynamicArray(int);
+        ~DynamicArray();
         T* getArray();
         int getSize();
         int getOccupied();
@@ -30,11 +30,11 @@ class dynamicArray {
         void sort(std::string = "ASC");
         T& operator[](int);
         template<typename U>
-        friend std::ostream& operator<<(std::ostream&, const dynamicArray<U>&);
+        friend std::ostream& operator<<(std::ostream&, const DynamicArray<U>&);
 };
 
 template <class T>
-dynamicArray<T>::dynamicArray()
+DynamicArray<T>::DynamicArray()
 {
     this->arraySize = 1;
     this->arrayOccupied = 0;
@@ -42,7 +42,7 @@ dynamicArray<T>::dynamicArray()
 }
 
 template <class T>
-dynamicArray<T>::dynamicArray(int size)
+DynamicArray<T>::DynamicArray(int size)
 {
     if(size > 0) {
         this->arraySize = size;
@@ -58,31 +58,31 @@ dynamicArray<T>::dynamicArray(int size)
 }
 
 template <class T>
-dynamicArray<T>::~dynamicArray()
+DynamicArray<T>::~DynamicArray()
 {
     delete[] this->array;
 }
 
 template <class T>
-T* dynamicArray<T>::getArray()
+T* DynamicArray<T>::getArray()
 {
     return array;
 }
 
 template <class T>
-int dynamicArray<T>::getSize()
+int DynamicArray<T>::getSize()
 {
     return arraySize;
 }
 
 template <class T>
-int dynamicArray<T>::getOccupied()
+int DynamicArray<T>::getOccupied()
 {
     return arrayOccupied;
 }
 
 template <class T>
-void dynamicArray<T>::increaseArraySize()
+void DynamicArray<T>::increaseArraySize()
 {
     T* temp = new T[arraySize+1];
 
@@ -93,7 +93,7 @@ void dynamicArray<T>::increaseArraySize()
 }
 
 template <class T>
-void dynamicArray<T>::push(T item)
+void DynamicArray<T>::push(T item)
 {
     if(arrayOccupied == arraySize) increaseArraySize();
 
@@ -103,7 +103,7 @@ void dynamicArray<T>::push(T item)
 }
 
 template <class T>
-void dynamicArray<T>::pop()
+void DynamicArray<T>::pop()
 {
     if(arraySize > 0 && arrayOccupied > 0)
     {
@@ -122,13 +122,13 @@ void dynamicArray<T>::pop()
 }
 
 template <class T>
-bool dynamicArray<T>::empty()
+bool DynamicArray<T>::empty()
 {
     return !(arrayOccupied > 0);
 }
 
 template <class T>
-void dynamicArray<T>::clear()
+void DynamicArray<T>::clear()
 {
     if(arraySize != 0)
     {
@@ -140,27 +140,27 @@ void dynamicArray<T>::clear()
 }
 
 template <class T>
-int dynamicArray<T>::indexOf(int value) {
+int DynamicArray<T>::indexOf(int value) {
     return Searching<T>::search(array, arrayOccupied, value);
 }
 
 template <class T>
-int* dynamicArray<T>::allIndexOf(int value) {
+int* DynamicArray<T>::allIndexOf(int value) {
     return Searching<T>::searchAll(array, arrayOccupied, value);
 }
 
 template <class T>
-int dynamicArray<T>::allIndexOfCount(int value) {
+int DynamicArray<T>::allIndexOfCount(int value) {
     return Searching<T>::searchCount(array, arrayOccupied, value);
 }
 
 template <class T>
-void dynamicArray<T>::sort(std::string order) {
+void DynamicArray<T>::sort(std::string order) {
     Sorting<T>::sort(array, arrayOccupied, "MERGE", order);
 }
 
 template <class T>
-T& dynamicArray<T>::operator[](int i)
+T& DynamicArray<T>::operator[](int i)
 {
     if (i >= arraySize) {
         std::cout << "\nArray index out of bound\n";
@@ -171,7 +171,7 @@ T& dynamicArray<T>::operator[](int i)
 }
 
 template <class T>
-std::ostream& operator<<(std::ostream &os, const dynamicArray<T> &dt)
+std::ostream& operator<<(std::ostream &os, const DynamicArray<T> &dt)
 {
     for (int i = 0; i < dt.arrayOccupied; i++)
     {
