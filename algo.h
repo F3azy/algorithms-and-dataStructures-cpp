@@ -1,8 +1,12 @@
-#ifndef ALGO_H__
-#define ALGO_H__
+#ifndef ALGO_H
+#define ALGO_H
 
-#include "Searching.h"
-#include "Sorting.h"
 #include "DynamicArray.h"
+#include "DynamicArray.cpp"
+#include "Searching.h"
+#include "Searching.cpp"
+#include "Sorting.h"
+#include "Sorting.cpp"
+
 
 #endif
